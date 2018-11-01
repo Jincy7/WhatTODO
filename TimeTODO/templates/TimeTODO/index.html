@@ -1,0 +1,62 @@
+{% extends 'TimeTODO/base.html' %}
+{% block content %}
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+    <div id="main">
+        <!-- HOME -->
+        <article id="home" class="panel">
+            <header>
+                <h1>What TODO!</h1>
+                <p>WinterCoding Assignment : Make Your Own Todo List</p><br>
+                <h2>WelCome, {{ user.username }}
+                    <div align="right">
+                        <a href="{% url 'logout' %}">
+                            <button type=" button" class="btn btn-danger">로그아웃</button>
+                        </a>
+                    </div>
+                </h2>
+
+
+            </header>
+
+
+
+            {% if finished_TODO %}
+                <section>
+                    <h3><font color="#7cfc00">기간내 완료 TODO</font></h3>
+                    <ul>
+                        <br>
+                        {% for todo in finished_TODO %}
+                            <li><a href="{% url 'detail' todo.todo_id %}">{{ todo.todo_title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% else %}
+                <section>
+                    <h3><font color="#7cfc00">기간내 완료 TODO</font>가 없습니다</h3>
+                </section>
+            {% endif %}
+
+
+            {% if notfinished_TODO %}
+                <section>
+                    <h3><font color="red">기간내 미완료 TODO</font></h3>
+                    <br>
+                    <ul>
+                        {% for todo in notfinished_TODO %}
+                            <li><a href="{% url 'detail' todo.todo_id %}">{{ todo.todo_title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% else %}
+                <section>
+                    <h3><font color="red">기간내 미완료 TODO</font>가 없습니다</h3>
+                </section>
+            {% endif %}
+
+        </article>
+    </div>
+{% endblock %}

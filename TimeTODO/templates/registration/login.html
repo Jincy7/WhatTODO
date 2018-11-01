@@ -1,0 +1,30 @@
+{% extends 'TimeTODO/index.html' %}
+{% block content %}
+
+    <div id="main">
+        <!-- 로그인 폼 -->
+        <article id="main" class="panel">
+            <form method="POST" action="{% url 'login' %}" class="sign-in-form">
+                {% csrf_token %}
+
+                <h2 class="sub-title"> 로그인 </h2>
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">닉네임</label>
+                    <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="15"
+                           name="{{ form.username.html_name }}" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}">패스워드</label>
+                    <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120"
+                           name="{{ form.password.html_name }}" type="password"/>
+                </div>
+                <br>
+                <input type="submit" class="save btn btn-success" value="로그인">
+                <a href="{% url 'sigh_up' %}">
+                    <button type="button" class="btn btn-danger">회원가입</button>
+                </a>
+                <input type="hidden" name="next" value="">
+            </form>
+        </article>
+    </div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>WhatTODO</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <link rel="stylesheet" href="{% static  'assets/css/main.css'%}"/>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
+    </noscript>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Nav -->
+    <nav id="nav">
+        <a href="/TimeTODO/index" class="icon fa-home active"><span>Home</span></a>
+        <a href="/TimeTODO/work" class="icon fa-list active"><span>Work</span></a>
+        <a href="/TimeTODO/new" class="icon fa-plus-circle active"><span>New</span></a>
+
+    </nav>
+
+
+    <div id="main">
+        <!-- HOME -->
+        <article id="contact" class="panel">
+            <header>
+                <h2>Update "{{ todo.todo_title }}"</h2>
+            </header>
+            <!-- update url에 todo_id와 같이 폼 입력 값 던짐 -->
+            <form action="{% url 'update' todo.todo_id %}" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.todo_title.id_for_label }}">Title:</label>
+                    <input class="form-control" id="{{ form.todo_title.id_for_label }}" maxlength="15"
+                           name="{{ form.todo_title.html_name }}" type="text" value="{{ todo.todo_title }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.todo_contents.id_for_label }}">Contents:</label>
+                    <textarea name="{{ form.todo_contents.html_name }}" cols="40" rows="10"
+                              id="{{ form.todo_contents.id_for_label }}"
+                              placeholder="{{ todo.todo_contents }}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.todo_is_prior.id_for_label }}">급한 과제인가요?</label>
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_is_prior.html_name }}" value="True"/>Yes
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_is_prior.html_name }}" value="False"/>No
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="{{ form.todo_has_expire_date.id_for_label }}">마감 기한이 있나요?</label>
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_has_expire_date.html_name }}" value="True"/>Yes
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_has_expire_date.html_name }}" value="False"/>No
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="{{ form.todo_is_finished.id_for_label }}">완료됐나요?</label>
+                    <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
+                           name="{{ form.todo_is_finished.html_name }}" value="True"/>Yes
+                    <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
+                           name="{{ form.todo_is_finished.html_name }}" value="False"/>No
+                </div>
+                <br>
+                <div class="form-group" id="{{ form.todo_expire_date.id_for_label }}">
+                    <label for="{{ form.todo_expire_date.id_for_label }}">마감 기한</label>
+                    <input class="form-control" id="{{ form.todo_expire_date.id_for_label }}" maxlength="30"
+                           name="{{ form.todo_expire_date.html_name }}" type="date" type="datetime-local" value="{{ todo.todo_expire_date.year }}-{{ todo.todo_expire_date.month }}-{{ todo.todo_expire_date.day }}"/>
+                </div>
+
+                <button type="submit" class="btn btn-danger">Save</button>
+                <input type="hidden" name="next" value="">
+            </form>
+
+        </article>
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footer">
+        <ul class="copyright">
+            <li>&copy; WhatTODO.</li>
+            <li>Design: Jincy713 Base with HTML5 UP</li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static  'assets/js/jquery.min.js'%}"></script>
+<script src="{% static  'assets/js/browser.min.js'%}"></script>
+<script src="{% static  'assets/js/breakpoints.min.js'%}"></script>
+<script src="{% static  'assets/js/util.js'%}"></script>
+<script src="{% static  'assets/js/main.js'%}"></script>
+</body>
+</html>

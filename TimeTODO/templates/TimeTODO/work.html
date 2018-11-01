@@ -1,0 +1,89 @@
+{% extends 'TimeTODO/base.html' %}
+{% block content %}
+
+    <div id="main">
+        <!-- HOME -->
+        <article id="work" class="panel">
+            <header>
+                <h2>TODO LIST</h2>
+            </header>
+
+            <section>
+
+                <h3>급한 TODO</h3>
+                {% if prior_todo_list %}
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Expire Date</th>
+                            <th>Contents</th>
+                            <th>Finished</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for todo in prior_todo_list %}
+                            <tr>
+                                <td><strong><a href="{% url 'detail' todo.todo_id %}">{{ todo.todo_title }}</a></strong>
+                                </td>
+                                <td width="20%">{{ todo.todo_expire_date }}</td>
+                                <td width="55%">{{ todo.todo_contents }}</td>
+                                <td width="7%">{{ todo.todo_is_finished }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% else %}
+                    <p>
+                        급하게 할 일은 없습니다. 여유를 즐겨요:)
+                    </p>
+
+                {% endif %}
+                <h3>TODO</h3>
+                {% if common_todo_list %}
+
+
+                    <!--로그인 안 되어있는 경우 사용자 정보 없다고 로그인 하라고 하기-->
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Expire Date</th>
+                            <th>Contents</th>
+                            <th>Finished</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for todo in common_todo_list %}
+                            <tr>
+                                <td><strong><a href="{% url 'detail' todo.todo_id %}">{{ todo.todo_title }}</a></strong>
+                                </td>
+                                <td width="20%">{{ todo.todo_expire_date }}</td>
+                                <td width="55%"><span style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap">{{ todo.todo_contents }}</span></td>
+                                <td width="7%">{{ todo.todo_is_finished }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>
+                        TODO 가 없습니다!
+                    </p>
+
+                {% endif %}
+            </section>
+        </article>
+    </div>
+    <style type="text/css">
+        .ellip {
+            width: 55%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+
+
+{% endblock %}

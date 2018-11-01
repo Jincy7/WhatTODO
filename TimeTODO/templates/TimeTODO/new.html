@@ -1,0 +1,52 @@
+{% extends 'TimeTODO/base.html' %}
+{% block content %}
+
+    <div id="main">
+        <!-- HOME -->
+        <article id="contact" class="panel">
+            <header>
+                <h2>NEW TODO</h2>
+            </header>
+            <!-- 폼 액션에 할거 추가하는 view 랑 연결한 url 을 액션으로 던짐 -->
+            <form action="{% url 'new' %}" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.todo_title.id_for_label }}">Title:</label>
+                    <input class="form-control" id="{{ form.todo_title.id_for_label }}" maxlength="15"
+                           name="{{ form.todo_title.html_name }}" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.todo_contents.id_for_label }}">Contents:</label>
+                    <textarea name="{{ form.todo_contents.html_name }}" cols="40" rows="10"
+                              id="{{ form.todo_contents.id_for_label }}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.todo_is_prior.id_for_label }}">급한 과제인가요?</label>
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_is_prior.html_name }}" value="True"/>Yes
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_is_prior.html_name }}" value="False"/>No
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="{{ form.todo_has_expire_date.id_for_label }}">마감 기한이 있나요?</label>
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_has_expire_date.html_name }}" value="True"/>Yes
+                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                           name="{{ form.todo_has_expire_date.html_name }}" value="False"/>No
+                </div>
+                <br>
+                <div class="form-group" id="{{ form.todo_expire_date.id_for_label }}">
+                    <label for="{{ form.todo_expire_date.id_for_label }}">마감 기한</label>
+                    <input class="form-control" id="{{ form.todo_expire_date.id_for_label }}" maxlength="30"
+                           name="{{ form.todo_expire_date.html_name }}" type="date" type="datetime-local"/>
+                </div>
+
+                <button type="submit" class="btn btn-danger">Save</button>
+                <input type="hidden" name="next" value="">
+            </form>
+
+        </article>
+    </div>
+
+
+{% endblock %}
