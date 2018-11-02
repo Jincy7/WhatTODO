@@ -46,8 +46,7 @@
                 <div class="form-group">
                     <label for="{{ form.todo_contents.id_for_label }}">Contents:</label>
                     <textarea name="{{ form.todo_contents.html_name }}" cols="40" rows="10"
-                              id="{{ form.todo_contents.id_for_label }}"
-                              placeholder="{{ todo.todo_contents }}"></textarea>
+                              id="{{ form.todo_contents.id_for_label }}">{{ todo.todo_contents }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="{{ form.todo_is_prior.id_for_label }}">급한 과제인가요?</label>
