@@ -1,0 +1,15 @@
+{% extends 'TimeTODO/base.html' %}
+{% block content %}
+
+    <div id="main">
+        <!-- 로그인 폼 -->
+        <article id="main" class="panel">
+
+            <h2 class="sub-title"> 회원가입에 성공하셨습니다! 로그인해보세요! </h2>
+            <br>
+            <a href="{% url 'root' %}" style="alignment: center">
+                <button type="button" class="btn btn-danger" style="alignment: center">로그인 하러가기</button>
+            </a>
+        </article>
+    </div>
+{% endblock %}

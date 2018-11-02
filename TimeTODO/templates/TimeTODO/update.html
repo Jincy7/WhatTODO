@@ -11,7 +11,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-    <link rel="stylesheet" href="{% static  'assets/css/main.css'%}"/>
+    <link rel="stylesheet" href="{% static  'assets/css/main.css' %}"/>
     <noscript>
         <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
     </noscript>
@@ -51,32 +51,56 @@
                 </div>
                 <div class="form-group">
                     <label for="{{ form.todo_is_prior.id_for_label }}">급한 과제인가요?</label>
-                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
-                           name="{{ form.todo_is_prior.html_name }}" value="True"/>Yes
-                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
-                           name="{{ form.todo_is_prior.html_name }}" value="False"/>No
+                    {% if form.todo_is_prior %}
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_prior.html_name }}" value="True" checked="checked"/>Yes
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_prior.html_name }}" value="False"/>No
+                    {% elif not form.todo_is_prior%}
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_prior.html_name }}" value="True"/>Yes
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_prior.html_name }}" value="False" checked="checked"/>No
+                    {% endif %}
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="{{ form.todo_has_expire_date.id_for_label }}">마감 기한이 있나요?</label>
-                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
-                           name="{{ form.todo_has_expire_date.html_name }}" value="True"/>Yes
-                    <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
-                           name="{{ form.todo_has_expire_date.html_name }}" value="False"/>No
+                    {% if form.todo_has_expire_date %}
+                        <label for="{{ form.todo_has_expire_date.id_for_label }}">마감 기한이 있나요?</label>
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_has_expire_date.html_name }}" value="True" checked="checked"/>Yes
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_has_expire_date.html_name }}" value="False"/>No
+                    {% elif not form.todo_has_expire_date%}
+                        <label for="{{ form.todo_has_expire_date.id_for_label }}">마감 기한이 있나요?</label>
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_has_expire_date.html_name }}" value="True"/>Yes
+                        <input class="form-control" id="{{ form.todo_is_prior.id_for_label }}" type="radio"
+                               name="{{ form.todo_has_expire_date.html_name }}" value="False" checked="checked"/>No
+                    {% endif %}
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="{{ form.todo_is_finished.id_for_label }}">완료됐나요?</label>
-                    <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
-                           name="{{ form.todo_is_finished.html_name }}" value="True"/>Yes
-                    <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
-                           name="{{ form.todo_is_finished.html_name }}" value="False"/>No
+                    {% if form.todo_is_finished %}
+                        <label for="{{ form.todo_is_finished.id_for_label }}">완료됐나요?</label>
+                        <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_finished.html_name }}" value="True" checked="checked"/>Yes
+                        <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_finished.html_name }}" value="False"/>No
+                    {% elif not form.todo_is_finished%}
+                        <label for="{{ form.todo_is_finished.id_for_label }}">완료됐나요?</label>
+                        <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_finished.html_name }}" value="True"/>Yes
+                        <input class="form-control" id="{{ form.todo_is_finished.id_for_label }}" type="radio"
+                               name="{{ form.todo_is_finished.html_name }}" value="False" checked="checked"/>No
+                    {% endif %}
                 </div>
                 <br>
                 <div class="form-group" id="{{ form.todo_expire_date.id_for_label }}">
                     <label for="{{ form.todo_expire_date.id_for_label }}">마감 기한</label>
                     <input class="form-control" id="{{ form.todo_expire_date.id_for_label }}" maxlength="30"
-                           name="{{ form.todo_expire_date.html_name }}" type="date" type="datetime-local" value="{{ todo.todo_expire_date.year }}-{{ todo.todo_expire_date.month }}-{{ todo.todo_expire_date.day }}"/>
+                           name="{{ form.todo_expire_date.html_name }}" type="date" type="datetime-local"
+                           value="{{ todo.todo_expire_date.year }}-{{ todo.todo_expire_date.month }}-{{ todo.todo_expire_date.day }}"/>
                 </div>
 
                 <button type="submit" class="btn btn-danger">Save</button>
@@ -98,10 +122,10 @@
 </div>
 
 <!-- Scripts -->
-<script src="{% static  'assets/js/jquery.min.js'%}"></script>
-<script src="{% static  'assets/js/browser.min.js'%}"></script>
-<script src="{% static  'assets/js/breakpoints.min.js'%}"></script>
-<script src="{% static  'assets/js/util.js'%}"></script>
-<script src="{% static  'assets/js/main.js'%}"></script>
+<script src="{% static  'assets/js/jquery.min.js' %}"></script>
+<script src="{% static  'assets/js/browser.min.js' %}"></script>
+<script src="{% static  'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static  'assets/js/util.js' %}"></script>
+<script src="{% static  'assets/js/main.js' %}"></script>
 </body>
 </html>

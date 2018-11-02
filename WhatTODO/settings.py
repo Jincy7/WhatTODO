@@ -25,6 +25,7 @@ SECRET_KEY = '4i-%i4eg)+sl90$y266ty=rzkg)n@-e*$@xj+u^aiq@@4pqqwl'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     '1.201.139.91',     # swc ip
     'whattodo.iptime.org',     # Rock64 domain
     '172.17.42.1',      # swc-docker ip

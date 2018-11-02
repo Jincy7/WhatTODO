@@ -33,7 +33,7 @@ def signup(request):
             # 로컬 DB에 user 저장
             new_user = User.objects.create_user(**form.cleaned_data)
             # home 화면으로 이동
-            return redirect('/')
+            return render(request, 'registration/success.html')
 
         # form이 유효하지 않을 때
         else:

@@ -28,7 +28,11 @@
                                 </td>
                                 <td width="20%">{{ todo.todo_expire_date }}</td>
                                 <td width="55%">{{ todo.todo_contents }}</td>
-                                <td width="7%">{{ todo.todo_is_finished }}</td>
+                                {% if todo.todo_is_finished %}
+                                    <td width="7%"><font color="green">Did it!</font></td>
+                                {% else %}
+                                    <td width="7%"><font color="red">Not Yet</font></td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -61,7 +65,11 @@
                                 </td>
                                 <td width="20%">{{ todo.todo_expire_date }}</td>
                                 <td width="55%"><span style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap">{{ todo.todo_contents }}</span></td>
-                                <td width="7%">{{ todo.todo_is_finished }}</td>
+                                {% if todo.todo_is_finished %}
+                                    <td width="7%"><font color="green">Did it!</font></td>
+                                {% else %}
+                                    <td width="7%"><font color="red">Not Yet</font></td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
