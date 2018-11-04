@@ -29,9 +29,9 @@
                                 <td width="20%">{{ todo.todo_expire_date }}</td>
                                 <td width="55%">{{ todo.todo_contents }}</td>
                                 {% if todo.todo_is_finished %}
-                                    <td width="7%"><font color="green">Did it!</font></td>
+                                    <td width="7%" align="center"><a href="{% url 'success' todo.todo_id %}"><img src ="../../static/images/IconDid.PNG" width="15px" height="15px"></a></td>
                                 {% else %}
-                                    <td width="7%"><font color="red">Not Yet</font></td>
+                                    <td width="7%" align="center"><a href="{% url 'success' todo.todo_id %}"><img src ="../../static/images/IconYet.PNG" width="15px" height="15px"></a></td>
                                 {% endif %}
                             </tr>
                         {% endfor %}
@@ -64,11 +64,13 @@
                                 <td><strong><a href="{% url 'detail' todo.todo_id %}">{{ todo.todo_title }}</a></strong>
                                 </td>
                                 <td width="20%">{{ todo.todo_expire_date }}</td>
-                                <td width="55%"><span style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap">{{ todo.todo_contents }}</span></td>
+                                <td width="55%"><span
+                                        style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap">{{ todo.todo_contents }}</span>
+                                </td>
                                 {% if todo.todo_is_finished %}
-                                    <td width="7%"><font color="green">Did it!</font></td>
+                                    <td width="7%" align="center"><a href="{% url 'success' todo.todo_id %}"><img src ="../../static/images/IconDid.PNG" width="15px" height="15px"></a></td>
                                 {% else %}
-                                    <td width="7%"><font color="red">Not Yet</font></td>
+                                    <td width="7%" align="center"><a href="{% url 'success' todo.todo_id %}"><img src ="../../static/images/IconYet.PNG" width="15px" height="15px"></a></td>
                                 {% endif %}
                             </tr>
                         {% endfor %}

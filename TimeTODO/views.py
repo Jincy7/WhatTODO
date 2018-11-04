@@ -121,6 +121,13 @@ def detail(request, todo_id):
                   {'todo': todo})
 
 
+def success(request, todo_id):
+    todo = get_object_or_404(TODO, pk=todo_id)
+    todo.todo_is_finished = not todo.todo_is_finished
+    todo.save()
+    return redirect('work')
+
+
 def update(request, todo_id):
     todo = TODO.objects.get(pk=todo_id)
     if (request.method == "POST"):
